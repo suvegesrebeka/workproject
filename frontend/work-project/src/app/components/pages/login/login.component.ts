@@ -29,17 +29,8 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    this.submitted = true;
-
     if (this.signupForm.invalid) {
       return;
     }
-
-    this.working = true;
-    setTimeout(() => {
-      this.signupForm.reset();
-      this.working = false;
-      this.complete = true;
-    }, 1000);
   }
 }

@@ -9,14 +9,12 @@
           novalidate
           autocomplete="off"
         >
-          <div class="form-group">
+          <div class="form__group field">
             <!-- email -->
-            <label for="email" class="control-label font-weight-bold"
-              >Email</label
-            >
+
             <input
               type="email"
-              class="form-control"
+              class="form__field"
               formControlName="email"
               placeholder="Email address"
               [ngClass]="{
@@ -24,24 +22,15 @@
                 'is-invalid': (submitted || f.email.dirty) && f.email.errors
               }"
             />
-            <div class="invalid-feedback" *ngIf="f.email.errors">
-              <span *ngIf="f.email.errors['required']"
-                >Email address is required</span
-              >
-              <span *ngIf="f.email.errors['email']"
-                >Email address is not valid</span
-              >
-            </div>
+            <label for="email" class="form__label">Email</label>
+            <div class="invalid-feedback" *ngIf="f.email.errors"></div>
           </div>
 
           <!-- password -->
-          <div class="form-group">
-            <label for="password" class="control-label font-weight-bold"
-              >Password</label
-            >
+          <div class="form__group field">
             <input
               type="password"
-              class="form-control"
+              class="form__field"
               formControlName="password"
               placeholder="Choose a password"
               autocomplete="new-password"
@@ -52,38 +41,23 @@
                   (submitted || f.password.dirty) && f.password.errors
               }"
             />
+            <label for="password" class="form__label">Password</label>
             <app-password-strength
               [passwordToCheck]="signupForm.value.password!"
               (passwordStrength)="onPasswordStrengthChanged($event)"
             ></app-password-strength>
 
-            <div class="invalid-feedback" *ngIf="f.password.errors">
-              <span *ngIf="f.password.errors['required']"
-                >Password is required</span
-              >
-              <span *ngIf="f.password.errors['minlength']"
-                >Password must be at least 8 characters long</span
-              >
-            </div>
+            <div class="invalid-feedback" *ngIf="f.password.errors"></div>
           </div>
 
           <button
-            type="submit"
-            class="btn btn-block btn-primary"
+            mat-button
+            color="primary"
             [disabled]="signupForm.invalid || !strongPassword || working"
           >
-            {{ working ? "Working on it..." : "Create account" }}
+            Bejelentkezés
           </button>
         </form>
-      </div>
-    </div>
-
-    <!-- success card -->
-    <div class="card text-white bg-success shadow-sm h-100" *ngIf="complete">
-      <div class="card-header">Registration complete</div>
-      <div class="card-body">
-        <h5 class="card-title">You're all set 🐉</h5>
-        <p class="card-text">Check your inbox to confirm your account.</p>
       </div>
     </div>
   </div>
